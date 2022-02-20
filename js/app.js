@@ -23,16 +23,16 @@ const sliderBg = new Swiper('.slider_bg', {
 });
 sliderMain.controller.control = sliderBg;
 
-document.querySelectorAll('.slider__item').forEach(item => {
+const sliderItem = document.querySelectorAll('.slider__item');
+
+sliderItem.forEach(item => {
     item.addEventListener('click', () => {
         item.classList.toggle('opened');
-    });
-    item.addEventListener('slide', () => {
-        item.classList.remove('opened');
     });
 });
 
 let desc = document.querySelector('.description');
 sliderMain.on('slideChange', () => {
     sliderMain.activeIndex > 0 ? desc.classList.add('hidden') : desc.classList.remove('hidden');
+    sliderItem.forEach(item => item.classList.remove('opened'));
 });
